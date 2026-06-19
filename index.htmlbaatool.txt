@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بتول الزهراني | طالبة قانون</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:        #110e1c;
+  --ink-soft:   #3d3356;
+  --ink-faint:  #8b80a8;
+  --purple:     #3a2768;
+  --purple-mid: #5a3f96;
+  --purple-lt:  #ede8f7;
+  --purple-xlt: #f8f6fd;
+  --rose:       #7b3d6a;
+  --rose-lt:    #f6ecf3;
+  --gold:       #b89050;
+  --gold-lt:    #faf4e8;
+  --teal:       #1a7a80;
+  --teal-lt:    #e8f5f5;
+  --white:      #ffffff;
+  --divider:    #e2dbf2;
+  --shadow:     0 2px 18px rgba(58,39,104,0.07);
+  --shadow-lg:  0 10px 40px rgba(58,39,104,0.15);
+  --r:          14px;
+  --rsm:        8px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--purple-xlt);color:var(--ink);line-height:1.75;direction:rtl}
+
+/* NAV */
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--divider)}
+nav{max-width:1160px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo{width:34px;height:34px;background:var(--purple);border-radius:9px;display:flex;align-items:center;justify-content:center;color:white;font-size:1rem}
+.nav-name{font-size:.95rem;font-weight:700;color:var(--purple)}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--purple-mid)}
+.btn-edit{background:var(--purple);color:white;border:none;border-radius:var(--rsm);padding:.4rem 1rem;font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:.3rem}
+.btn-edit:hover{background:var(--purple-mid)}
+.btn-edit.on{background:#1f9e6e}
+
+/* EDIT BANNER */
+.edit-banner{display:none;background:#1f9e6e;color:white;text-align:center;padding:.4rem;font-size:.78rem;font-weight:600;position:sticky;top:60px;z-index:99}
+.edit-mode .edit-banner{display:block}
+
+/* HERO */
+.hero-wrap{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-mid) 50%,var(--rose) 100%);color:white;padding:4rem 1.5rem 3rem}
+.hero-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);color:white;font-size:.76rem;font-weight:600;padding:.28rem .85rem;border-radius:100px;margin-bottom:1rem}
+.hero-tag::before{content:'⚖';font-size:.8rem}
+.hero-name{font-size:clamp(1.9rem,4vw,3rem);font-weight:700;line-height:1.15;margin-bottom:.45rem}
+.hero-title{font-size:.95rem;opacity:.85;margin-bottom:1.2rem}
+.hero-bio{font-size:.88rem;opacity:.8;max-width:520px;line-height:1.85;margin-bottom:1.6rem}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.hero-chip{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);color:white;padding:.25rem .8rem;border-radius:100px;font-size:.75rem}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn-w{background:white;color:var(--purple);padding:.6rem 1.6rem;border-radius:var(--rsm);font-family:inherit;font-size:.86rem;font-weight:700;border:none;cursor:pointer;text-decoration:none;transition:opacity .2s,transform .15s;box-shadow:0 4px 14px rgba(0,0,0,.14)}
+.btn-w:hover{opacity:.92;transform:translateY(-2px)}
+.btn-g{background:transparent;color:white;padding:.6rem 1.6rem;border-radius:var(--rsm);font-family:inherit;font-size:.86rem;font-weight:600;border:2px solid rgba(255,255,255,.45);cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-g:hover{background:rgba(255,255,255,.12)}
+.hero-emblem{width:190px;height:190px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.22);border-radius:var(--r);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.hero-emblem svg{opacity:.92}
+
+/* STATS */
+.stats-row{background:white;border-bottom:1px solid var(--divider)}
+.stats-inner{max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-around}
+.stat{text-align:center;padding:1.3rem 1.8rem;border-left:1px solid var(--divider);flex:1;min-width:120px}
+.stat:last-child{border-left:none}
+.stat-num{font-size:1.8rem;font-weight:700;color:var(--purple);display:block}
+.stat-lbl{font-size:.74rem;color:var(--ink-faint)}
+
+/* MAIN */
+.main{max-width:1160px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:1fr 330px;gap:1.8rem;align-items:start}
+
+/* CARD */
+.card{background:white;border-radius:var(--r);border:1px solid var(--divider);box-shadow:var(--shadow);padding:1.6rem;margin-bottom:1.6rem}
+.card:last-child{margin-bottom:0}
+.card-h{font-size:.95rem;font-weight:700;color:var(--purple);margin-bottom:1.3rem;display:flex;align-items:center;gap:.45rem}
+.card-h::before{content:'';width:3px;height:16px;background:var(--purple);border-radius:2px;flex-shrink:0}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:.45rem}
+.tag{padding:.28rem .85rem;border-radius:100px;font-size:.78rem;font-weight:500}
+.tp{background:var(--purple-lt);color:var(--purple-mid);border:1px solid #d5cced}
+.tr{background:var(--rose-lt);color:var(--rose);border:1px solid #e5cede}
+.tg{background:var(--gold-lt);color:var(--gold);border:1px solid #e8d8b0}
+.tt{background:var(--teal-lt);color:var(--teal);border:1px solid #bcdede}
+.edit-mode .tag{cursor:pointer}
+.tag-inp{display:none;border:2px dashed var(--purple-mid);background:white;padding:.28rem .85rem;border-radius:100px;font-family:inherit;font-size:.78rem;outline:none;width:110px}
+.edit-mode .tag-inp{display:inline-block}
+
+/* EXP */
+.exp-list{display:flex;flex-direction:column;gap:1.2rem}
+.exp-item{padding:1.1rem;border-radius:var(--rsm);border:1px solid var(--divider);background:var(--purple-xlt);position:relative}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.4rem}
+.exp-role{font-size:.9rem;font-weight:700;color:var(--purple)}
+.exp-period{font-size:.72rem;font-weight:600;background:var(--purple-lt);color:var(--purple-mid);padding:.18rem .65rem;border-radius:100px;white-space:nowrap}
+.exp-org{font-size:.82rem;color:var(--rose);font-weight:500;margin:.18rem 0}
+.exp-desc{font-size:.8rem;color:var(--ink-soft);line-height:1.7;margin-top:.35rem}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.proj-card{background:white;border-radius:var(--r);border:1px solid var(--divider);box-shadow:var(--shadow);padding:1.4rem;position:relative;transition:transform .2s,box-shadow .2s}
+.proj-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.proj-ico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:.9rem}
+.ipp{background:var(--purple-lt)} .ipr{background:var(--rose-lt)} .ipg{background:var(--gold-lt)} .ipt{background:var(--teal-lt)}
+.proj-name{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.35rem}
+.proj-desc{font-size:.8rem;color:var(--ink-soft);line-height:1.7;margin-bottom:.8rem}
+.proj-chips{display:flex;flex-wrap:wrap;gap:.3rem}
+.proj-chip{background:var(--purple-xlt);color:var(--ink-soft);padding:.16rem .55rem;border-radius:100px;font-size:.7rem;border:1px solid var(--divider)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-right:1.4rem}
+.timeline::before{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--purple),var(--rose))}
+.tl-item{position:relative;margin-bottom:1.3rem;padding:1.1rem;background:white;border-radius:var(--rsm);border:1px solid var(--divider);box-shadow:var(--shadow)}
+.tl-item::before{content:'';position:absolute;right:-1.8rem;top:1.1rem;width:10px;height:10px;border-radius:50%;background:var(--purple);border:3px solid white;box-shadow:0 0 0 2px var(--purple)}
+.tl-date{font-size:.7rem;font-weight:700;letter-spacing:.8px;color:var(--rose);text-transform:uppercase;margin-bottom:.2rem}
+.tl-title{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+.tl-body{font-size:.78rem;color:var(--ink-soft);line-height:1.7}
+/* SPECIAL BADGE */
+.tl-badge{display:inline-flex;align-items:center;gap:.35rem;background:linear-gradient(135deg,var(--gold-lt),#fff8e8);border:1px solid var(--gold);border-radius:100px;padding:.2rem .7rem;font-size:.7rem;font-weight:700;color:var(--gold);margin-top:.4rem}
+
+/* SIDEBAR */
+.sc{background:white;border-radius:var(--r);border:1px solid var(--divider);box-shadow:var(--shadow);padding:1.4rem;margin-bottom:1.4rem}
+.sc:last-child{margin-bottom:0}
+.sc-h{font-size:.85rem;font-weight:700;color:var(--purple);margin-bottom:1.1rem;display:flex;align-items:center;gap:.38rem}
+.sc-h::before{content:'';width:3px;height:13px;background:var(--purple);border-radius:2px}
+.info-row{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:.8rem;font-size:.82rem}
+.info-row:last-child{margin-bottom:0}
+.iico{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
+.ilbl{font-size:.68rem;color:var(--ink-faint);font-weight:600;letter-spacing:.4px}
+.ival{color:var(--ink);font-weight:500}
+
+.award-list{display:flex;flex-direction:column;gap:.75rem}
+.award-item{padding:.75rem;border-radius:var(--rsm)}
+.award-gold{background:linear-gradient(135deg,#fdf8ec,#fffdf5);border:1px solid #e8d8a0}
+.award-purple{background:var(--purple-lt);border:1px solid #d5cced}
+.award-rose{background:var(--rose-lt);border:1px solid #e5cede}
+.award-teal{background:var(--teal-lt);border:1px solid #bcdede}
+.award-title{font-size:.82rem;font-weight:700;margin-bottom:.15rem}
+.award-sub{font-size:.72rem;color:var(--ink-soft)}
+
+.course-list{display:flex;flex-direction:column;gap:.45rem}
+.course-item{padding:.55rem .75rem;border-radius:var(--rsm);background:var(--purple-xlt);border:1px solid var(--divider);font-size:.77rem;display:flex;align-items:flex-start;gap:.45rem}
+.cy{color:var(--purple-mid);font-weight:700;flex-shrink:0;min-width:30px}
+.cn{color:var(--ink-soft);line-height:1.5}
+
+/* RESEARCH */
+.research-list{display:flex;flex-direction:column;gap:.6rem}
+.research-item{padding:.7rem .9rem;border-radius:var(--rsm);background:var(--purple-xlt);border:1px solid var(--divider);font-size:.8rem;color:var(--ink-soft);line-height:1.6;display:flex;gap:.6rem;align-items:flex-start}
+.rnum{color:var(--purple-mid);font-weight:700;flex-shrink:0}
+
+/* CONTACT */
+.contact-wrap{background:linear-gradient(135deg,var(--purple) 0%,var(--rose) 100%);padding:3.5rem 1.5rem}
+.contact-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.ct-text h2{font-size:1.7rem;font-weight:700;color:white;margin-bottom:.7rem}
+.ct-text p{color:rgba(255,255,255,.8);font-size:.88rem;line-height:1.8;margin-bottom:1.6rem}
+.ct-links{display:flex;flex-direction:column;gap:.65rem}
+.ct-link{display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);color:white;text-decoration:none;padding:.7rem .95rem;border-radius:var(--rsm);font-size:.85rem;transition:background .2s}
+.ct-link:hover{background:rgba(255,255,255,.22)}
+.ct-form{background:white;border-radius:var(--r);padding:1.8rem;box-shadow:var(--shadow-lg)}
+.ct-form h3{font-size:.95rem;font-weight:700;color:var(--purple);margin-bottom:1.1rem}
+.fg{margin-bottom:.9rem}
+.fl{font-size:.76rem;font-weight:600;color:var(--ink-soft);display:block;margin-bottom:.28rem}
+.fi,.fta{width:100%;border:1px solid var(--divider);border-radius:var(--rsm);padding:.62rem .88rem;font-family:inherit;font-size:.86rem;color:var(--ink);outline:none;transition:border-color .2s;background:var(--purple-xlt)}
+.fi:focus,.fta:focus{border-color:var(--purple-mid);background:white}
+.fta{resize:vertical;min-height:85px}
+.btn-sub{width:100%;background:var(--purple);color:white;border:none;border-radius:var(--rsm);padding:.72rem;font-family:inherit;font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s}
+.btn-sub:hover{background:var(--purple-mid)}
+
+footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:1.6rem;font-size:.8rem}
+footer strong{color:rgba(255,255,255,.85)}
+
+/* MODAL */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center}
+.modal-ov.open{display:flex}
+.modal-box{background:white;border-radius:var(--r);padding:1.8rem;max-width:470px;width:92%;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-box h3{font-size:1.05rem;font-weight:700;color:var(--purple);margin-bottom:1.2rem}
+.mf{display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.2rem}
+.ma{display:flex;gap:.65rem;justify-content:flex-end}
+.btn-mc{background:var(--purple-xlt);color:var(--ink-soft);border:1px solid var(--divider);padding:.52rem 1.2rem;border-radius:var(--rsm);font-family:inherit;cursor:pointer;font-size:.85rem}
+.btn-ms{background:var(--purple);color:white;border:none;padding:.52rem 1.4rem;border-radius:var(--rsm);font-family:inherit;cursor:pointer;font-size:.85rem;font-weight:700}
+
+/* EDIT OVERLAYS */
+.ceb{display:none;position:absolute;top:.6rem;left:.6rem;gap:.35rem}
+.edit-mode .ceb{display:flex}
+.cebtn{background:var(--purple);color:white;border:none;border-radius:6px;padding:.22rem .55rem;font-family:inherit;font-size:.7rem;cursor:pointer;font-weight:600}
+.cebtn.del{background:#d94f4f}
+.add-proj-btn{display:none;grid-column:1/-1;background:white;border:2px dashed #d5cced;border-radius:var(--r);padding:1.4rem;color:var(--purple-mid);font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .2s;align-items:center;justify-content:center;gap:.4rem}
+.edit-mode .add-proj-btn{display:flex}
+.add-proj-btn:hover{background:var(--purple-lt)}
+.tl-add{display:none;width:100%;background:white;border:2px dashed #d5cced;border-radius:var(--rsm);padding:.85rem;color:var(--purple-mid);font-family:inherit;font-size:.83rem;font-weight:600;cursor:pointer;transition:background .2s;align-items:center;justify-content:center;gap:.4rem;margin-top:.5rem}
+.edit-mode .tl-add{display:flex}
+
+[contenteditable="true"]{outline:2px dashed var(--purple-mid);outline-offset:2px;border-radius:3px;cursor:text}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(70px);background:#1f9e6e;color:white;padding:.62rem 1.7rem;border-radius:100px;font-family:inherit;font-size:.84rem;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:400;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:960px){.main{grid-template-columns:1fr}.proj-grid{grid-template-columns:1fr}.contact-inner{grid-template-columns:1fr;gap:2rem}.hero-inner{grid-template-columns:1fr}.hero-emblem{display:none}}
+@media(max-width:640px){.stats-inner{flex-direction:column}.stat{border:none;border-bottom:1px solid var(--divider)}.stat:last-child{border:none}.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="nav-brand">
+      <div class="nav-logo">⚖</div>
+      <span class="nav-name">بتول الزهراني</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">عني</a></li>
+      <li><a href="#projects">المشاريع</a></li>
+      <li><a href="#exp">الخبرات</a></li>
+      <li><a href="#research">الأبحاث</a></li>
+      <li><a href="#updates">المنجزات</a></li>
+      <li><a href="#contact">التواصل</a></li>
+    </ul>
+    <button class="btn-edit" id="editBtn" onclick="toggleEdit()">✏️ تعديل</button>
+  </nav>
+</header>
+
+<div class="edit-banner">✅ وضع التعديل — انقر على أي نص لتغييره مباشرةً · اضغط "حفظ" عند الانتهاء</div>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag" id="htag">طالبة بكالوريوس أنظمة · جامعة أم القرى</div>
+      <h1 class="hero-name" id="hname">بتول عبدالمحسن<br>جمعان الزهراني</h1>
+      <p class="hero-title" id="htitle">طالبة أنظمة · قائدة · متطوّعة · متدربة قانونية وباحثة</p>
+      <p class="hero-bio" id="hbio">طالبة بكالوريوس أنظمة بجامعة أم القرى حاصلة على معدل 4.00 مع مرتبة الشرف الأولى. أمتلك خبرة عملية من خلال التدرّب لدى  مكاتب محاماة متخصصة، شاركت في عدد من المنافسات المحلية والدولية توّجت بحصولي على مراكز متقدمة.</p>
+      <div class="hero-chips">
+        <span class="hero-chip">⚖️ صياغة قانونية</span>
+        <span class="hero-chip">🏆 تحكيم تجاري دولي</span>
+        <span class="hero-chip">📋 منصّة ناجز</span>
+        <span class="hero-chip">القيادة</span>
+        <span class="hero-chip">🔬 بحث قانوني</span>
+        <span class="hero-chip">💡 أفكار ابتكارية</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-w">مشاريعي</a>
+        <a href="#contact" class="btn-g">للتواصل</a>
+      </div>
+    </div>
+    <div class="hero-emblem">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 130" width="120" height="120" fill="white">
+        <rect x="63" y="8" width="4" height="85" rx="2"/>
+        <rect x="18" y="22" width="94" height="4" rx="2"/>
+        <circle cx="65" cy="10" r="6"/>
+        <line x1="22" y1="26" x2="10" y2="54" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="22" y1="26" x2="34" y2="54" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        <rect x="6" y="54" width="32" height="7" rx="3.5"/>
+        <line x1="108" y1="26" x2="96" y2="54" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="108" y1="26" x2="120" y2="54" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+        <rect x="92" y="54" width="32" height="7" rx="3.5"/>
+        <rect x="48" y="93" width="34" height="5" rx="2.5"/>
+        <rect x="38" y="98" width="54" height="6" rx="3"/>
+        <text x="65" y="118" text-anchor="middle" font-size="14" font-family="IBM Plex Sans Arabic,sans-serif" font-weight="700">بتول</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num" id="s1">4.00</span><span class="stat-lbl">المعدل / 4.00 مع مرتبة الشرف</span></div>
+    <div class="stat"><span class="stat-num" id="s2">802+</span><span class="stat-lbl">ساعة تطوعية موثقة</span></div>
+    <div class="stat"><span class="stat-num" id="s3">+40</span><span class="stat-lbl">دورة تدريبية مفعّلة</span></div>
+    <div class="stat"><span class="stat-num" id="s4">13</span><span class="stat-lbl">دراسة قانونيّة</span></div>
+    <div class="stat"><span class="stat-num" id="s5">5+</span><span class="stat-lbl">تكريمات محلية ودولية</span></div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="main">
+<div><!-- RIGHT COL -->
+
+  <!-- ABOUT -->
+  <div class="card" id="about">
+    <div class="card-h">عني</div>
+    <p id="about-text" style="font-size:.88rem;color:var(--ink-soft);line-height:1.85;margin-bottom:1.2rem">
+      طالبة بجامعة أم القرى بمكة المكرمة أسعى إلى بناء مسيرة قانونية تجمع بين المعرفة الأكاديمية والخبرة العمليّة. أمتلك معرفة قانونيّة وخبرة عملية لدى مكاتب المحاماة،كما اطلعت على قواعد المركز السعودي للتحكيم التجاري ولائحة عمل أمناء السرّ. تولّيت عدد من الأدوار القيادية، ومن أبرزها رئاسة نادي الدراسات القضائية والأنظمة للعام 1446هـ ساهمت من خلاله في إطلاق برامج ومبادرات نوعية داخل الجامعة وخارجها، كمبادرة دراية، وربوعيات نظامية، ومسابقة ترافع..
+    </p>
+    <div class="tags" id="skillsWrap">
+      <span class="tag tp" onclick="removeTag(this)">صياغة المذكرات القانونية</span>
+      <span class="tag tp" onclick="removeTag(this)">دراسة الدعاوى</span>
+      <span class="tag tp" onclick="removeTag(this)">التحكيم التجاري الدولي</span>
+      <span class="tag tp" onclick="removeTag(this)">مدارسة الأنظمة السعودية</span>
+      <span class="tag tr" onclick="removeTag(this)">Microsoft Office</span>
+      <span class="tag tr" onclick="removeTag(this)">ناجز</span>
+      <span class="tag tr" onclick="removeTag(this)">الملكية الفكرية</span>
+      <span class="tag tr" onclick="removeTag(this)">التقنية القانونيّة</span>
+      <span class="tag tg" onclick="removeTag(this)">القيادة وحل المشكلات</span>
+      <span class="tag tg" onclick="removeTag(this)">التفكير التحليلي</span>
+      <span class="tag tg" onclick="removeTag(this)">إدارة الفعاليات</span>
+      <span class="tag tt" onclick="removeTag(this)">الفقه الحنبلي</span>
+      <span class="tag tt" onclick="removeTag(this)">البحث القانوني</span>
+      <input class="tag-inp" id="skillInp" placeholder="مهارة..." onkeydown="addSkill(event)">
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="card" id="projects">
+    <div class="card-h">الأفكار الابتكارية</div>
+    <div class="proj-grid" id="projGrid">
+
+      <div class="proj-card">
+        <div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="proj-ico ipp">📚</div>
+        <div class="proj-name">منصة إلمام — ELMAM</div>
+        <div class="proj-desc">منصة قانونية تعليمية رقمية تهدف إلى تأهيل طلاب الأنظمة عبر محتوى مبسّط ومنظّم، من خلال دمج المعرفة النظرية بالعملية.</div>
+        <div class="proj-chips"><span class="proj-chip">تعليم قانوني</span><span class="proj-chip">محتوى رقمي</span><span class="proj-chip">ابتكار</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="proj-ico ipr">⚖️</div>
+        <div class="proj-name">منصة بيّنة</div>
+        <div class="proj-desc"> منصة تهدف إلى تمكين ضيوف الرحمن من التعرف على حقوقهم والتزامات هم من خلال توفير مساعد قانوني ذكي يبين الزائر حقوقه والتزاماته ويجيبه على استفساراته، مدعّم بلغات متعددة. كما يحوي دليل إرشادي يسهل للزائر الوصول إلى الخدمات النظامية والمحامين مرخصين.</div>
+        <div class="proj-chips"><span class="proj-chip">توثيق قانوني</span><span class="proj-chip">قضاء رقمي</span><span class="proj-chip">تطبيق</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="proj-ico ipg">🤝</div>
+        <div class="proj-name">منصة عَضُد(القانونيّة)</div>
+        <div class="proj-desc">منصة ذكية لدعم الأشخاص ذوي الإعاقة تجمع بين الترجمة الفورية للغة الإشارة وتوضيح الحقوق القانونية والوصول إلى الخدمات الحكومية.</div>
+        <div class="proj-chips"><span class="proj-chip">إمكانية الوصول</span><span class="proj-chip">ذكاء اصطناعي</span><span class="proj-chip">حقوق</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="proj-ico ipt">🔒</div>
+        <div class="proj-name">I Compliance Mate D</div>
+        <div class="proj-desc">فكرة ابتكارية لمنصة متخصصة في الامتثال والحوكمة ومخاطر الالتزام، تقدم دراسات وتقارير ذكية للشركات والمؤسسات.</div>
+        <div class="proj-chips"><span class="proj-chip">حوكمة</span><span class="proj-chip">امتثال</span><span class="proj-chip">مؤسسات</span></div>
+      </div>
+
+      <div class="proj-card" style="grid-column:1/-1">
+        <div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="proj-ico ipp">✨</div>
+        <div class="proj-name">مبادرة دراية · برنامج ربوعيات نظامية · مسابقة ترافع</div>
+        <div class="proj-desc">ثلاثة مشاريع ريادية طلابية ممتدّة: ١) مبادرة دراية لتوعية طلاب المرحلة الثانوية حول أبرز الجرائم المعرضين لها (10+ زيارات توعوية)، ٢)برنامج ربوعيات نظامية:  برنامج نوعي يتناول خلال الشهر فرعي من أفرع القانون مستهدفا بذلك الربط بين الجانب العملي النظري من خلال الأنشطة التفاعلية(نتج عنه تفعيل: شهر العدالة الجنائية-شهر المرافعات الشرعية- الشهر المدني، ومسابقة ترافع بنسختها الأولى.</div>
+        <div class="proj-chips"><span class="proj-chip">ريادة طلابية</span><span class="proj-chip">توعية قانونية</span><span class="proj-chip">تدريب</span><span class="proj-chip">مسابقات</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="card" id="exp">
+    <div class="card-h">الخبرات التدريبية</div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-head"><div class="exp-role">متدربة قانونية — مكتب أسماء الزهراني للمحاماة</div><span class="exp-period">2024 – 2025 · 5 أشهر فعلية</span></div>
+        <div class="exp-org">مكة المكرمة · حضوري</div>
+        <div class="exp-desc">صياغة المذكرات، دراسة القضايا، رفع طلبات التنفيذ والدعاوى عبر ناجز، سماع الاستشارات وحضور الجلسات، صياغة العقود.</div>
+      </div>
+      <div class="exp-item">
+        <div class="ceb"><button class="cebtn" onclick="openEE(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="exp-head"><div class="exp-role">متدربة قانونية — مكتب المحامية سهام الياسي</div><span class="exp-period">2025 · 8 أشهر </span></div>
+        <div class="exp-org">مكة المكرمة · حضوري</div>
+        <div class="exp-desc">البحث عن الأسانيد في مختلف الدعاوى(الإدارية، التأمينية، التعويض عن الأخطاء الطبية، الجنائية، المدنية)، تقديم صحيفة دعوى إلكترونية، صياغة المذكرات والتقارير، تقديم طلبات ناجز.</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head"><div class="exp-role">باحثة قانونية — شركة مشنوي للمحاماة</div><span class="exp-period">2024 · شهران</span></div>
+        <div class="exp-org">الرياض</div>
+        <div class="exp-desc">صياغة الاستشارات القانونية، إعداد الدراسات القانونية.</div>
+      </div>
+      <div class="exp-item">
+
+      </div>
+      <div class="exp-item" style="background:var(--gold-lt);border-color:#e8d8a0">
+        <div class="exp-head"><div class="exp-role" style="color:var(--gold)">منافسة التحكيم التجاري الدولي (SCCA Moot)</div><span class="exp-period">2025 – 2026</span></div>
+        <div class="exp-org">مستوى دولي — من 181 فريقاً منافساً</div>
+        <div class="exp-desc">🥇 الأول محلياً في كلتا المذكرتين · 🥉 المركز الثالث دولياً (أفضل مذكرة عن المدعي) · المركز الخامس دولياً (أفضل مذكرة عن المدعى عليه) · تأهّل للمرافعات النهائية ضمن أفضل 32 فريقاً من بين 181.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div class="card" id="research">
+    <div class="card-h">لمحات حول الدراسات القانونية</div>
+    <div class="research-list">
+      <div class="research-item"><span class="rnum">01</span>المسؤولية الجنائية الناجمة عن حوادث السيارات ذاتية القيادة — جامعة أم القرى (بصدد النشر)</div>
+      <div class="research-item"><span class="rnum">02</span>أحكام وقف الأسهم على مذهب الإمام أحمد بن حنبل</div>
+      <div class="research-item"><span class="rnum">03</span>أحكام عقد الإجارة والتعويض عن الإخلال في تأخير تسليم الوحدات العقارية</div>
+      <div class="research-item"><span class="rnum">04</span>متطلبات النظام القانوني لإدارة وتشغيل الفنادق والشقق المخدومة</div>
+      <div class="research-item"><span class="rnum">05</span>ضمانات الموظف في مرحلة التحقيق الإداري</div>
+      <div class="research-item"><span class="rnum">06</span>التزامات الراهن والمرتهن في الرهن الحيازي في الفقه الحنبلي</div>
+      <div class="research-item"><span class="rnum">07</span>عوامل الإجرام الداخلية وموقف الشريعة الإسلامية</div>
+      <div class="research-item"><span class="rnum">09</span>الفرق بين شركات المساهمة وأهميتها في المملكة العربية السعودية</div>
+      <div class="research-item"><span class="rnum">10</span>الحوكمة الضريبية كالية غير قضائية لمكافحة التهرب الضريبي لدى دول مجلس التعاون: منظومة الفوترة الإلكترونية السعودية أنموذجًا</div>
+      <div class="research-item"><span class="rnum">12</span>الدبلوماسية في الإسلام والقانون الدولي العام — دراسة مقارنة</div>
+      <div class="research-item"><span class="rnum">13</span>أبرز مساهمات منظمة الأمم المتحدة للطفل (UNICEF) والتحديات التي تواجهها</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="card" id="updates">
+    <div class="card-h">الإنجازات</div>
+    <div class="timeline" id="tlEl">
+
+      <div class="tl-item">
+        <div class="tl-date">2026</div>
+        <div class="tl-title">برنامج إعداد أمناء سر هيئات التحكيم — SCCA</div>
+        <div class="tl-body">أكاديمية SCCA — عشر ساعات تدريبية متخصصة.</div>
+        <div class="tl-badge">🏅 ضمن منح التميز في منافسة التحكيم التجاري الدولية</div>
+      </div>
+
+      <div class="tl-item" style="background:linear-gradient(135deg,#fdf8ec,white);border-color:#e8d8a0">
+        <div class="tl-date">2025 – 2026</div>
+        <div class="tl-title">🏆 المراكز الدولية — SCCA International Moot</div>
+        <div class="tl-body">الثالث دولياً كأفضل مذكرة عن المدعي · الخامس دولياً عن المدعى عليه · الأول محلياً في كلتيهما · من بين 181 فريقاً من 144 جامعة عربية وإسلامية.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="tl-date">2025</div>
+        <div class="tl-title">🥇 مسابقة ترافع (أفضل فريق - أفضل مترافع)</div>
+        <div class="tl-body">المركز الأول كأفضل فريق مترافع عن المدعى عليه · المركز الثاني كأفضل مترافعة فردية عن المدعى عليه. جامعة أم القرى.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="tl-date">2025</div>
+        <div class="tl-title">شهادة TOT — مدربة معتمدة</div>
+        <div class="tl-body">المؤسسة العامة للتدريب المهني والتقني — 60 ساعة تدريبية معتمدة.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="tl-date">2025</div>
+        <div class="tl-title">الدورة العامة في الملكية الفكرية — أكاديمية الويبو</div>
+        <div class="tl-body">الدورة العامة عن الملكية الفكرية الخاصة بالمملكة العربية السعودية — أكاديمية الويبو الدولية.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="tl-date">2024 – 2025</div>
+        <div class="tl-title">رئيسة نادي الدراسات القضائية والأنظمة</div>
+        <div class="tl-body">تفعيل 20 دورة تدريبية · 9 زيارات قانونية (ديوان المظالم، النيابة العامة، مراكز أدلة جنائية) · 8 فعاليات جامعية · 6 برامج قانونية منها 3 نوعية ممتدة.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="tl-date">2024</div>
+        <div class="tl-title">أفضل صحيفة دعوى</div>
+        <div class="tl-body">كُرِّمت نظير تميزي في صياغة لائحة دعوى ضمن متطلبات مقرر نظام المرافعات الشرعية. بإشراف د. نورة الشريم.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2025</div>
+        <div class="tl-title">المركز الثاني — مسابقة مناظرات نادي الحاسبات</div>
+        <div class="tl-body">المركز الثاني كأفضل فريق مناظر في مناظرات نادي الحاسبات التقنية، جامعة أم القرى.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2024</div>
+        <div class="tl-title">أفضل ملخص بحثي لرسالة شيخ الإسلام ابن تيمية</div>
+        <div class="tl-body">شهادة تقدير من كلية الدراسات القضائية والأنظمة لتميزها في كتابة لائحة الدعوى الاستئنافية. بالإضافة إلى جائزة أفضل ملخص بحثي لرسالة شيخ الإسلام ابن تيمية، بإشراف: د. ياسر الحارثي.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
+        <div class="tl-date">2023</div>
+        <div class="tl-title">إجازة علمية في الفقه الحنبلي</div>
+        <div class="tl-body">اجتزت برنامج التأهيل الفقهي على مذهب الإمام أحمد بن حنبل، المقام ضمن برامج معهد الامام البهوتي. (لمدة٦أشهر).</div>
+      </div>
+
+    </div>
+    <button class="tl-add" onclick="openAT()">➕ إضافة مستجد</button>
+  </div>
+
+</div><!-- end right col -->
+
+<!-- SIDEBAR -->
+<div>
+
+  <div class="sc">
+    <div class="sc-h">للتواصل</div>
+    <div class="info-row"><span class="iico">📍</span><div><div class="ilbl">الموقع</div><div class="ival" id="iloc">مكة المكرمة، المملكة العربية السعودية</div></div></div>
+    <div class="info-row"><span class="iico">📧</span><div><div class="ilbl">البريد</div><div class="ival">batoolalzahrani84@gmail.com</div></div></div>
+    <div class="info-row"><span class="iico">📞</span><div><div class="ilbl">الجوال</div><div class="ival" id="iphone">0592076905</div></div></div>
+    <div class="info-row"><span class="iico">🎓</span><div><div class="ilbl">المؤهل</div><div class="ival">بكالوريوس أنظمة — جامعة أم القرى</div></div></div>
+    <div class="info-row"><span class="iico">⭐</span><div><div class="ilbl">المعدل</div><div class="ival">4.00/4.00 · مرتبة الشرف الأولى</div></div></div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-h">الجوائز والإنجازات</div>
+    <div class="award-list">
+      <div class="award-item award-gold">
+        <div class="award-title" style="color:var(--gold)">🥇 الأول محلياً — تحكيم SCCA الدولي</div>
+        <div class="award-sub">أفضل مذكرة عن المدعي والمدعى عليه · 2025-2026</div>
+      </div>
+      <div class="award-item award-gold">
+        <div class="award-title" style="color:var(--gold)">🥉 الثالث دولياً — SCCA Moot (181 فريق)</div>
+        <div class="award-sub">أفضل مذكرة عن المدعي · 2025-2026</div>
+      </div>
+      <div class="award-item award-purple">
+        <div class="award-title" style="color:var(--purple-mid)">🏆 الأول — مسابقة ترافع (أفضل فريق)</div>
+        <div class="award-sub">جامعة أم القرى · 2025</div>
+      </div>
+      <div class="award-item award-rose">
+        <div class="award-title" style="color:var(--rose)">🎖 الثاني — مسابقة ترافع (أفضل مترافعة)</div>
+        <div class="award-sub">عن المدعى عليه · جامعة أم القرى · 2025</div>
+      </div>
+      <div class="award-item award-teal">
+        <div class="award-title" style="color:var(--teal)">🏅 أفضل صحيفة دعوى - أفضل ملخص بحثي</div>
+        <div class="award-sub">جامعة أم القرى ·  2025</div>
+      </div>
+      <div class="award-item award-purple">
+        <div class="award-title" style="color:var(--purple-mid)">🥈 الثاني — مناظرات نادي الحاسبات</div>
+        <div class="award-sub">جامعة أم القرى · 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-h">الشهادات العلمية</div>
+    <div class="exp-item" style="margin:0 0 .9rem;background:var(--purple-xlt)">
+      <div class="exp-role">بكالوريوس أنظمة</div>
+      <div class="exp-org">جامعة أم القرى · 2023 – حالياً</div>
+      <div class="exp-desc">ممتاز مع مرتبة الشرف الأولى · معدل 4.00/4.00</div>
+    </div>
+    <div class="exp-item" style="margin:0;background:var(--gold-lt);border-color:#e8d8a0">
+      <div class="exp-role" style="color:var(--gold)">إجازة علمية في الفقه الحنبلي</div>
+      <div class="exp-org">معهد البهوتي — التأهيل الفقهي · 2023 · 6 أشهر</div>
+      <div class="exp-desc">على مذهب الإمام أحمد بن حنبل رحمه الله</div>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-h">القيادة الجامعية</div>
+    <div class="course-list">
+      <div class="course-item"><span class="cy">◈</span><span class="cn">نائبة رئيسة نادي القيادة والمسؤولية المجتمعية — 2025 حالياً</span></div>
+      <div class="course-item"><span class="cy">◈</span><span class="cn">رئيسة نادي الدراسات القضائية والأنظمة — 1446هـ</span></div>
+      <div class="course-item"><span class="cy">◈</span><span class="cn">قائدة الأنشطة الرياضية بالكلية — 1446هـ</span></div>
+      <div class="course-item"><span class="cy">◈</span><span class="cn">عضو اللجنة الإعلامية بالكلية — 1445هـ حالياً</span></div>
+      <div class="course-item"><span class="cy">◈</span><span class="cn">ممثلة الدفعة في المجلس الاستشاري الطلابي — 1445هـ حالياً</span></div>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-h">أبرز الدورات</div>
+    <div class="course-list">
+      <div class="course-item"><span class="cy">2026</span><span class="cn">إعداد أمناء سر هيئات التحكيم — SCCA (10 ساعات)</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">تدريب المدربين TOT — 60 ساعة</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">مدارسة اللائحة التنفيذية لطرق الاعتراض على الأحكام-مبادرة سند (12ساعة)</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">الدورة العامة للملكية الفكرية — أكاديمية الويبو(65 ساعة)</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">مدارسة نظام المرافعات الشرعية — مركز قدوة (25 ساعة)</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">مهارات الصياغة القانونية — مركز قدوة (10 ساعة)</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">عقود الفيديك — للمحكمين المستقبليين</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">سلسلة السكرتارية التنفيذية — 20 ساعة</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">مدارسة نظام الامتياز التجاري — مبادرة سند(12ساعة)</span></div>
+      <div class="course-item"><span class="cy">2025</span><span class="cn">مصطلحات قانونية باللغة الإنجليزية (12ساعة) — نادي الكلية</span></div>
+      <div class="course-item"><span class="cy">2024</span><span class="cn">مهارات الصياغة القانونية — قبس القضائية</span></div>
+      <div class="course-item"><span class="cy">2024</span><span class="cn">mckinsey Forward Program</span></div>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-h">التطوع</div>
+    <div class="course-list">
+      <div class="course-item"><span class="cy">950+</span><span class="cn">إجمالي الساعات التطوعية </span></div>
+      <div class="course-item"><span class="cy">8+</span><span class="cn">جهات تطوعية: جمعية متقن، ملاذ، عطاء، المستقبل الواعد، أمانة المدينة المنورة، الدفاع المدني وغيرها</span></div>
+      <div class="course-item"><span class="cy">25+</span><span class="cn">إقامة وتنظيم فرص تطوعية قانونية وعامة خلال 2024-2025</span></div>
+    </div>
+  </div>
+
+</div><!-- end sidebar -->
+</div><!-- end main grid -->
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="ct-text">
+      <h2>تواصلي معي</h2>
+      <p id="ct-desc">⚖️</p>
+      <div class="ct-links">
+        <a href="mailto:batoolalzahrani84@gmail.com" class="ct-link"><span>📧</span> batoolalzahrani84@gmail.com</a>
+        <a href="tel:0592076905" class="ct-link"><span>📞</span> 0592076905</a>
+        <a href="#" class="ct-link"><span>⚖️</span> LinkedIn — @Batoolalzahrani</a>
+      </div>
+    </div>
+    <div class="ct-form">
+      <h3>أرسل رسالة</h3>
+      <div class="fg"><label class="fl">الاسم</label><input class="fi" placeholder="اسمك"></div>
+      <div class="fg"><label class="fl">البريد الإلكتروني</label><input class="fi" type="email" placeholder="بريدك"></div>
+      <div class="fg"><label class="fl">الرسالة</label><textarea class="fta" placeholder="موضوع التواصل..."></textarea></div>
+      <button class="btn-sub" onclick="showToast('تم إرسال رسالتك بنجاح ✅')">إرسال</button>
+    </div>
+  </div>
+</div>
+
+<footer><strong>بتول عبدالمحسن جمعان الزهراني</strong> · طالبة بكالوريوس أنظمة · جامعة أم القرى · مكة المكرمة · <span id="fy"></span></footer>
+
+<!-- MODALS -->
+<div class="modal-ov" id="projM"><div class="modal-box">
+  <h3 id="pmT">إضافة مشروع</h3>
+  <div class="mf">
+    <div class="fg"><label class="fl">الأيقونة</label><input class="fi" id="pIco" value="📌"></div>
+    <div class="fg"><label class="fl">اسم المشروع</label><input class="fi" id="pNm" placeholder="اسم المشروع"></div>
+    <div class="fg"><label class="fl">الوصف</label><textarea class="fta" id="pDsc" placeholder="وصف..." style="min-height:70px"></textarea></div>
+    <div class="fg"><label class="fl">الكلمات المفتاحية (فاصلة)</label><input class="fi" id="pCh" placeholder="قانون, أنظمة"></div>
+    <div class="fg"><label class="fl">لون الأيقونة</label>
+      <select class="fi" id="pCl"><option value="ipp">بنفسجي</option><option value="ipr">وردي</option><option value="ipg">ذهبي</option><option value="ipt">أزرق</option></select>
+    </div>
+  </div>
+  <div class="ma"><button class="btn-mc" onclick="closeM('projM')">إلغاء</button><button class="btn-ms" onclick="saveP()">حفظ</button></div>
+</div></div>
+
+<div class="modal-ov" id="tlM"><div class="modal-box">
+  <h3 id="tmT">إضافة مستجد</h3>
+  <div class="mf">
+    <div class="fg"><label class="fl">التاريخ</label><input class="fi" id="tDt" placeholder="2025"></div>
+    <div class="fg"><label class="fl">العنوان</label><input class="fi" id="tTi" placeholder="عنوان المستجد"></div>
+    <div class="fg"><label class="fl">التفاصيل</label><textarea class="fta" id="tBd" placeholder="تفاصيل..."></textarea></div>
+  </div>
+  <div class="ma"><button class="btn-mc" onclick="closeM('tlM')">إلغاء</button><button class="btn-ms" onclick="saveTL()">حفظ</button></div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let em=false,ep=null,et=null;
+
+const eFields=['htag','hname','htitle','hbio','s1','s2','s3','s4','s5','about-text','iloc','iphone','ct-desc'];
+
+function toggleEdit(){
+  em=!em;
+  document.body.classList.toggle('edit-mode',em);
+  const b=document.getElementById('editBtn');
+  b.textContent=em?'✅ حفظ':'✏️ تعديل';
+  b.classList.toggle('on',em);
+  eFields.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable=em?'true':'false'});
+  if(!em)showToast('تم الحفظ 💾');
+}
+
+function removeTag(el){if(!em)return;el.remove()}
+function addSkill(e){
+  if(e.key!=='Enter')return;
+  const i=document.getElementById('skillInp'),v=i.value.trim();if(!v)return;
+  const t=document.createElement('span');t.className='tag tp';t.textContent=v;t.onclick=()=>removeTag(t);
+  document.getElementById('skillsWrap').insertBefore(t,i);i.value='';
+}
+
+function openAP(){ep=null;document.getElementById('pmT').textContent='إضافة مشروع';['pIco','pNm','pDsc','pCh'].forEach(id=>document.getElementById(id).value=id==='pIco'?'📌':'');document.getElementById('projM').classList.add('open')}
+function openEP(btn){ep=btn.closest('.proj-card');document.getElementById('pmT').textContent='تعديل المشروع';document.getElementById('pIco').value=ep.querySelector('.proj-ico').textContent.trim();document.getElementById('pNm').value=ep.querySelector('.proj-name').textContent.trim();document.getElementById('pDsc').value=ep.querySelector('.proj-desc').textContent.trim();document.getElementById('pCh').value=[...ep.querySelectorAll('.proj-chip')].map(c=>c.textContent).join(', ');document.getElementById('projM').classList.add('open')}
+function saveP(){
+  const ico=document.getElementById('pIco').value||'📌',nm=document.getElementById('pNm').value.trim();if(!nm)return;
+  const dsc=document.getElementById('pDsc').value.trim(),chips=document.getElementById('pCh').value.split(',').map(s=>s.trim()).filter(Boolean),cl=document.getElementById('pCl').value;
+  const ch=chips.map(c=>`<span class="proj-chip">${c}</span>`).join('');
+  if(ep){ep.querySelector('.proj-ico').textContent=ico;ep.querySelector('.proj-name').textContent=nm;ep.querySelector('.proj-desc').textContent=dsc;ep.querySelector('.proj-chips').innerHTML=ch}
+  else{const c=document.createElement('div');c.className='proj-card';c.innerHTML=`<div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div><div class="proj-ico ${cl}">${ico}</div><div class="proj-name">${nm}</div><div class="proj-desc">${dsc}</div><div class="proj-chips">${ch}</div>`;document.getElementById('projGrid').insertBefore(c,document.querySelector('.add-proj-btn'))}
+  closeM('projM');showToast('تم الحفظ ✅')
+}
+
+function openAT(){et=null;document.getElementById('tmT').textContent='إضافة مستجد';['tDt','tTi','tBd'].forEach(id=>document.getElementById(id).value='');document.getElementById('tlM').classList.add('open')}
+function openET(btn){et=btn.closest('.tl-item');document.getElementById('tmT').textContent='تعديل المستجد';document.getElementById('tDt').value=et.querySelector('.tl-date').textContent.trim();document.getElementById('tTi').value=et.querySelector('.tl-title').textContent.trim();document.getElementById('tBd').value=et.querySelector('.tl-body').textContent.trim();document.getElementById('tlM').classList.add('open')}
+function saveTL(){
+  const dt=document.getElementById('tDt').value.trim(),ti=document.getElementById('tTi').value.trim();if(!ti)return;
+  const bd=document.getElementById('tBd').value.trim();
+  if(et){et.querySelector('.tl-date').textContent=dt;et.querySelector('.tl-title').textContent=ti;et.querySelector('.tl-body').textContent=bd}
+  else{const i=document.createElement('div');i.className='tl-item';i.innerHTML=`<div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div><div class="tl-date">${dt}</div><div class="tl-title">${ti}</div><div class="tl-body">${bd}</div>`;document.getElementById('tlEl').prepend(i)}
+  closeM('tlM');showToast('تم الحفظ ✅')
+}
+
+function openEE(btn){showToast('لتعديل الخبرة يرجى استخدام النص المباشر بعد تفعيل وضع التعديل')}
+
+function delCard(btn){if(!confirm('حذف هذا العنصر؟'))return;btn.closest('.proj-card,.tl-item,.exp-item,.research-item').remove();showToast('تم الحذف 🗑️')}
+function closeM(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal-ov').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+document.getElementById('fy').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
