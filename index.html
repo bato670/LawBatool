@@ -222,12 +222,8 @@ footer strong{color:rgba(255,255,255,.85)}
       <li><a href="#updates">المنجزات</a></li>
       <li><a href="#contact">التواصل</a></li>
     </ul>
-    <button class="btn-edit" id="editBtn" onclick="toggleEdit()">✏️ تعديل</button>
-  </nav>
+
 </header>
-
-<div class="edit-banner">✅ وضع التعديل — انقر على أي نص لتغييره مباشرةً · اضغط "حفظ" عند الانتهاء</div>
-
 <!-- HERO -->
 <div class="hero-wrap">
   <div class="hero-inner">
@@ -331,8 +327,8 @@ footer strong{color:rgba(255,255,255,.85)}
       <div class="proj-card">
         <div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div>
         <div class="proj-ico ipg">🤝</div>
-        <div class="proj-name">منصة عَضُد(القانونيّة)</div>
-        <div class="proj-desc">منصة ذكية لدعم الأشخاص ذوي الإعاقة تجمع بين الترجمة الفورية للغة الإشارة وتوضيح الحقوق القانونية والوصول إلى الخدمات الحكومية.</div>
+        <div class="proj-name">منصة عَضُد</div>
+        <div class="proj-desc">منصّة ذكية توظف الذكاء الاصطناعي لبناء رحلة صحية مخصصة للحجاج والمعتمرين من ذوي الإعاقة، عبر التنبؤ بالمخاطر وتسهيل الوصول إلى الخدمات وتعزيز جودة تجربتهم في مكة المكرمة..</div>
         <div class="proj-chips"><span class="proj-chip">إمكانية الوصول</span><span class="proj-chip">ذكاء اصطناعي</span><span class="proj-chip">حقوق</span></div>
       </div>
 
@@ -602,85 +598,3 @@ footer strong{color:rgba(255,255,255,.85)}
 </div>
 
 <footer><strong>بتول عبدالمحسن جمعان الزهراني</strong> · طالبة بكالوريوس أنظمة · جامعة أم القرى · مكة المكرمة · <span id="fy"></span></footer>
-
-<!-- MODALS -->
-<div class="modal-ov" id="projM"><div class="modal-box">
-  <h3 id="pmT">إضافة مشروع</h3>
-  <div class="mf">
-    <div class="fg"><label class="fl">الأيقونة</label><input class="fi" id="pIco" value="📌"></div>
-    <div class="fg"><label class="fl">اسم المشروع</label><input class="fi" id="pNm" placeholder="اسم المشروع"></div>
-    <div class="fg"><label class="fl">الوصف</label><textarea class="fta" id="pDsc" placeholder="وصف..." style="min-height:70px"></textarea></div>
-    <div class="fg"><label class="fl">الكلمات المفتاحية (فاصلة)</label><input class="fi" id="pCh" placeholder="قانون, أنظمة"></div>
-    <div class="fg"><label class="fl">لون الأيقونة</label>
-      <select class="fi" id="pCl"><option value="ipp">بنفسجي</option><option value="ipr">وردي</option><option value="ipg">ذهبي</option><option value="ipt">أزرق</option></select>
-    </div>
-  </div>
-  <div class="ma"><button class="btn-mc" onclick="closeM('projM')">إلغاء</button><button class="btn-ms" onclick="saveP()">حفظ</button></div>
-</div></div>
-
-<div class="modal-ov" id="tlM"><div class="modal-box">
-  <h3 id="tmT">إضافة مستجد</h3>
-  <div class="mf">
-    <div class="fg"><label class="fl">التاريخ</label><input class="fi" id="tDt" placeholder="2025"></div>
-    <div class="fg"><label class="fl">العنوان</label><input class="fi" id="tTi" placeholder="عنوان المستجد"></div>
-    <div class="fg"><label class="fl">التفاصيل</label><textarea class="fta" id="tBd" placeholder="تفاصيل..."></textarea></div>
-  </div>
-  <div class="ma"><button class="btn-mc" onclick="closeM('tlM')">إلغاء</button><button class="btn-ms" onclick="saveTL()">حفظ</button></div>
-</div></div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-let em=false,ep=null,et=null;
-
-const eFields=['htag','hname','htitle','hbio','s1','s2','s3','s4','s5','about-text','iloc','iphone','ct-desc'];
-
-function toggleEdit(){
-  em=!em;
-  document.body.classList.toggle('edit-mode',em);
-  const b=document.getElementById('editBtn');
-  b.textContent=em?'✅ حفظ':'✏️ تعديل';
-  b.classList.toggle('on',em);
-  eFields.forEach(id=>{const el=document.getElementById(id);if(el)el.contentEditable=em?'true':'false'});
-  if(!em)showToast('تم الحفظ 💾');
-}
-
-function removeTag(el){if(!em)return;el.remove()}
-function addSkill(e){
-  if(e.key!=='Enter')return;
-  const i=document.getElementById('skillInp'),v=i.value.trim();if(!v)return;
-  const t=document.createElement('span');t.className='tag tp';t.textContent=v;t.onclick=()=>removeTag(t);
-  document.getElementById('skillsWrap').insertBefore(t,i);i.value='';
-}
-
-function openAP(){ep=null;document.getElementById('pmT').textContent='إضافة مشروع';['pIco','pNm','pDsc','pCh'].forEach(id=>document.getElementById(id).value=id==='pIco'?'📌':'');document.getElementById('projM').classList.add('open')}
-function openEP(btn){ep=btn.closest('.proj-card');document.getElementById('pmT').textContent='تعديل المشروع';document.getElementById('pIco').value=ep.querySelector('.proj-ico').textContent.trim();document.getElementById('pNm').value=ep.querySelector('.proj-name').textContent.trim();document.getElementById('pDsc').value=ep.querySelector('.proj-desc').textContent.trim();document.getElementById('pCh').value=[...ep.querySelectorAll('.proj-chip')].map(c=>c.textContent).join(', ');document.getElementById('projM').classList.add('open')}
-function saveP(){
-  const ico=document.getElementById('pIco').value||'📌',nm=document.getElementById('pNm').value.trim();if(!nm)return;
-  const dsc=document.getElementById('pDsc').value.trim(),chips=document.getElementById('pCh').value.split(',').map(s=>s.trim()).filter(Boolean),cl=document.getElementById('pCl').value;
-  const ch=chips.map(c=>`<span class="proj-chip">${c}</span>`).join('');
-  if(ep){ep.querySelector('.proj-ico').textContent=ico;ep.querySelector('.proj-name').textContent=nm;ep.querySelector('.proj-desc').textContent=dsc;ep.querySelector('.proj-chips').innerHTML=ch}
-  else{const c=document.createElement('div');c.className='proj-card';c.innerHTML=`<div class="ceb"><button class="cebtn" onclick="openEP(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div><div class="proj-ico ${cl}">${ico}</div><div class="proj-name">${nm}</div><div class="proj-desc">${dsc}</div><div class="proj-chips">${ch}</div>`;document.getElementById('projGrid').insertBefore(c,document.querySelector('.add-proj-btn'))}
-  closeM('projM');showToast('تم الحفظ ✅')
-}
-
-function openAT(){et=null;document.getElementById('tmT').textContent='إضافة مستجد';['tDt','tTi','tBd'].forEach(id=>document.getElementById(id).value='');document.getElementById('tlM').classList.add('open')}
-function openET(btn){et=btn.closest('.tl-item');document.getElementById('tmT').textContent='تعديل المستجد';document.getElementById('tDt').value=et.querySelector('.tl-date').textContent.trim();document.getElementById('tTi').value=et.querySelector('.tl-title').textContent.trim();document.getElementById('tBd').value=et.querySelector('.tl-body').textContent.trim();document.getElementById('tlM').classList.add('open')}
-function saveTL(){
-  const dt=document.getElementById('tDt').value.trim(),ti=document.getElementById('tTi').value.trim();if(!ti)return;
-  const bd=document.getElementById('tBd').value.trim();
-  if(et){et.querySelector('.tl-date').textContent=dt;et.querySelector('.tl-title').textContent=ti;et.querySelector('.tl-body').textContent=bd}
-  else{const i=document.createElement('div');i.className='tl-item';i.innerHTML=`<div class="ceb"><button class="cebtn" onclick="openET(this)">تعديل</button><button class="cebtn del" onclick="delCard(this)">حذف</button></div><div class="tl-date">${dt}</div><div class="tl-title">${ti}</div><div class="tl-body">${bd}</div>`;document.getElementById('tlEl').prepend(i)}
-  closeM('tlM');showToast('تم الحفظ ✅')
-}
-
-function openEE(btn){showToast('لتعديل الخبرة يرجى استخدام النص المباشر بعد تفعيل وضع التعديل')}
-
-function delCard(btn){if(!confirm('حذف هذا العنصر؟'))return;btn.closest('.proj-card,.tl-item,.exp-item,.research-item').remove();showToast('تم الحذف 🗑️')}
-function closeM(id){document.getElementById(id).classList.remove('open')}
-document.querySelectorAll('.modal-ov').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
-document.getElementById('fy').textContent=new Date().getFullYear();
-</script>
-</body>
-</html>
